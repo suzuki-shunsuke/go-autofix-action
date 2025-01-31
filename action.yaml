@@ -49,4 +49,11 @@ runs:
       env:
         FILES: ${{ inputs.files }}
 
+    # Generate JSON Schema
+    - shell: bash
+      run: |
+        if [ -f cmd/gen-jsonschema/main.go ]; then
+          go run ./cmd/gen-jsonschema
+        fi
+
     - uses: autofix-ci/action@2891949f3779a1cafafae1523058501de3d4e944 # v1.3.1
