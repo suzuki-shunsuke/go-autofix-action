@@ -56,4 +56,11 @@ runs:
           go run ./cmd/gen-jsonschema
         fi
 
+    # Generate USAGE
+    - shell: bash
+      run: |
+        if [ -f scripts/generate-usage.sh ]; then
+          bash scripts/generate-usage.sh
+        fi
+
     - uses: autofix-ci/action@2891949f3779a1cafafae1523058501de3d4e944 # v1.3.1
