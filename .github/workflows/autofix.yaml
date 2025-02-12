@@ -13,4 +13,4 @@ jobs:
           persist-credentials: false
       - uses: ./
         with:
-          aqua_version: v2.43.3
+          aqua_version: v2.44.0
