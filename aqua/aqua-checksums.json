@@ -1,28 +1,28 @@
 {
   "checksums": [
     {
-      "id": "github_release/github.com/mvdan/gofumpt/v0.7.0/gofumpt_v0.7.0_darwin_amd64",
-      "checksum": "B7D05E092DA45C5EC96344AB635B1D6547C3E27C840BA39BC76989934EFD7CE3",
+      "id": "github_release/github.com/mvdan/gofumpt/v0.8.0/gofumpt_v0.8.0_darwin_amd64",
+      "checksum": "0DDA6600CF263B703A5AD93E792B06180C36AFDEE9638617A91DD552F2C6FB3E",
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/mvdan/gofumpt/v0.7.0/gofumpt_v0.7.0_darwin_arm64",
-      "checksum": "08F23114760A090B090706D92B8C52B9875B9EB352D76C77AA354D6AA20B045A",
+      "id": "github_release/github.com/mvdan/gofumpt/v0.8.0/gofumpt_v0.8.0_darwin_arm64",
+      "checksum": "7E66E92B7A67D1D12839AB030FB7AE38E5E2273474AF3762E67BC7FE9471FCD9",
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/mvdan/gofumpt/v0.7.0/gofumpt_v0.7.0_linux_amd64",
-      "checksum": "6FF459C1DCAE3B0B00844C1A5A4A5B0F547237D8A4F3624AAEA8D424AEEF24C6",
+      "id": "github_release/github.com/mvdan/gofumpt/v0.8.0/gofumpt_v0.8.0_linux_amd64",
+      "checksum": "11604BBAF7321ABCC2FCA2C6A37B7E9198BB1E76E5A86F297C07201E8AB1FDA9",
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/mvdan/gofumpt/v0.7.0/gofumpt_v0.7.0_linux_arm64",
-      "checksum": "00C18C88EF50437629626BA20D677F4648684CB280952814CDD887677D42CBD3",
+      "id": "github_release/github.com/mvdan/gofumpt/v0.8.0/gofumpt_v0.8.0_linux_arm64",
+      "checksum": "787C1D3D4D20E6FE2B0BF06A5A913AC0F50343DBF9A71540724A2B8092A0E6CA",
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/mvdan/gofumpt/v0.7.0/gofumpt_v0.7.0_windows_amd64.exe",
-      "checksum": "65F5B9EA7723AA936FA6880E184624747E9E6481802B62D4CB5B774EF2350CEC",
+      "id": "github_release/github.com/mvdan/gofumpt/v0.8.0/gofumpt_v0.8.0_windows_amd64.exe",
+      "checksum": "6D25310F322080AF6DE8193617D78495B356A5EDE65FDE6D5D0E4BCDFFF1F2A4",
       "algorithm": "sha256"
     },
     {
