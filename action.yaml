@@ -12,7 +12,7 @@ runs:
   steps:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       with:
-        ref: ${{ github.head_ref }}
+        ref: ${{ github.event.pull_request.head.sha }}
         persist-credentials: false
     - run: echo "AQUA_GLOBAL_CONFIG=${AQUA_GLOBAL_CONFIG:-}:${GITHUB_ACTION_PATH}/aqua/aqua.yaml" >> "$GITHUB_ENV"
       shell: bash
@@ -64,4 +64,4 @@ runs:
           bash scripts/generate-usage.sh
         fi
 
-    - uses: suzuki-shunsuke/autofixci-action@a148ca710fd8bf5d9959d5d7604018ce8a77bad0 # v1.3.2-1
+    - uses: suzuki-shunsuke/autofixci-action@989fe99ca39af1980b3515837570511eea7c6285 # v1.3.2-2
