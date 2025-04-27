@@ -12,7 +12,7 @@ runs:
   steps:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       with:
-        ref: ${{ github.head_ref }}
+        ref: ${{ github.event.pull_request.head.sha }}
         persist-credentials: false
     - run: echo "AQUA_GLOBAL_CONFIG=${AQUA_GLOBAL_CONFIG:-}:${GITHUB_ACTION_PATH}/aqua/aqua.yaml" >> "$GITHUB_ENV"
       shell: bash
