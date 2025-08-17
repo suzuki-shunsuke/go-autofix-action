@@ -24,8 +24,14 @@ runs:
     # aqua-checksums.json
     - run: aqua upc -prune
       shell: bash
+      env:
+        AQUA_GITHUB_TOKEN: ${{github.token}}
 
     # Newlines
+    - run: nllint -v
+      shell: bash
+      env:
+        AQUA_GITHUB_TOKEN: ${{github.token}}
     - run: git ls-files | xargs nllint -f -s
       shell: bash
 
@@ -39,6 +45,8 @@ runs:
     # gofumpt
     - run: gofumpt -version
       shell: bash
+      env:
+        AQUA_GITHUB_TOKEN: ${{github.token}}
     - shell: bash
       run: |
         if [ -n "${FILES:-}" ]; then
