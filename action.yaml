@@ -42,21 +42,13 @@ runs:
     - run: go mod tidy
       shell: bash
 
-    # gofumpt
-    - run: gofumpt -version
+    # golangci-lint
+    - run: golangci-lint version
       shell: bash
       env:
         AQUA_GITHUB_TOKEN: ${{github.token}}
-    - shell: bash
-      run: |
-        if [ -n "${FILES:-}" ]; then
-          # shellcheck disable=SC2086
-          gofumpt -l -w $FILES
-          exit 0
-        fi
-        git ls-files | grep -E "\.go$" | xargs gofumpt -l -w
-      env:
-        FILES: ${{ inputs.files }}
+    - run: golangci-lint fmt
+      shell: bash
 
     # Generate JSON Schema
     - shell: bash
