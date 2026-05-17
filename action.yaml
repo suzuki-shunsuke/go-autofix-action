@@ -59,6 +59,8 @@ runs:
 
     # Generate USAGE
     - shell: bash
+      env:
+        AQUA_GITHUB_TOKEN: ${{github.token}}
       run: |
         if [ -f scripts/generate-usage.sh ]; then
           bash scripts/generate-usage.sh
