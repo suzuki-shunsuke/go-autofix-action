@@ -9,7 +9,7 @@ inputs:
     description: The version of aqua
   takumi_guard_bot_id:
     required: false
-    description: Takumi Guard bot ID
+    description: Takumi Guard bot ID. This requires the permission `id-token:write`.
 runs:
   using: composite
   steps:
