@@ -1,0 +1,35 @@
+---
+name: autofix.ci
+on:
+  workflow_call:
+    inputs:
+      aqua_version:
+        required: true
+        type: string
+    secrets:
+      TAKUMI_GUARD_BOT_ID:
+        required: false
+permissions: {}
+jobs:
+  gomodule:
+    uses: suzuki-shunsuke/download-go-module-action/.github/workflows/download.yaml@fdb081043860e14a53c218328a3854b71369d765 # v0.0.5
+    permissions:
+      contents: read
+      id-token: write
+    with:
+      ref: ${{github.event.pull_request.head.sha}}
+    secrets:
+      TAKUMI_GUARD_BOT_ID: ${{secrets.TAKUMI_GUARD_BOT_ID}}
+
+  autofix:
+    runs-on: ubuntu-26.04
+    needs: gomodule
+    permissions:
+      contents: read
+    timeout-minutes: 15
+    steps:
+      - name: Restore Go modules
+        uses: suzuki-shunsuke/download-go-module-action/restore@fdb081043860e14a53c218328a3854b71369d765 # v0.0.5
+      - uses: $/.
+        with:
+          aqua_version: ${{inputs.aqua_version}}

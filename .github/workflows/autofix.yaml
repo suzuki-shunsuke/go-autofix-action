@@ -4,13 +4,11 @@ on: pull_request
 permissions: {}
 jobs:
   autofix:
-    runs-on: ubuntu-26.04
-    permissions: {}
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-      - uses: ./
-        with:
-          aqua_version: v2.64.0
+    uses: ./.github/workflows/autofix-ci.yaml
+    permissions:
+      contents: read
+      id-token: write
+    with:
+      aqua_version: v2.64.0
+    secrets:
+      TAKUMI_GUARD_BOT_ID: ${{secrets.TAKUMI_GUARD_BOT_ID}}

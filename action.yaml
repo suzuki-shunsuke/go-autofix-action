@@ -44,11 +44,19 @@ runs:
         go-version-file: go.mod
 
     - uses: flatt-security/setup-takumi-guard-golang@2e3c7c40b538cd68b2ac483def12982ebc8bc02e # v1
+      if: inputs.takumi_guard_bot_id != ''
       with:
         bot-id: ${{inputs.takumi_guard_bot_id}}
 
-    - run: go mod tidy
+    - run: |
+        if [ -z "$TAKUMI_GUARD_BOT_ID" ]; then
+          # Use only the modules restored by download-go-module-action.
+          export GOPROXY=off
+        fi
+        go mod tidy
       shell: bash
+      env:
+        TAKUMI_GUARD_BOT_ID: ${{inputs.takumi_guard_bot_id}}
 
     # golangci-lint
     - run: golangci-lint version
