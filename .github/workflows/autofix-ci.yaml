@@ -12,7 +12,7 @@ on:
 permissions: {}
 jobs:
   gomodule:
-    uses: suzuki-shunsuke/download-go-module-action/.github/workflows/download.yaml@e41b50de59a715fcc3dc9fd54f43d030749942c8 # v0.0.6
+    uses: suzuki-shunsuke/download-go-module-action/.github/workflows/download.yaml@59ba5863b931de21763c13df6ad926cf98158517 # v0.0.8
     permissions:
       contents: read
       id-token: write
@@ -29,7 +29,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Restore Go modules
-        uses: suzuki-shunsuke/download-go-module-action/restore@e41b50de59a715fcc3dc9fd54f43d030749942c8 # v0.0.6
+        uses: suzuki-shunsuke/download-go-module-action/restore@59ba5863b931de21763c13df6ad926cf98158517 # v0.0.8
       - uses: $/.
         with:
           aqua_version: ${{inputs.aqua_version}}
