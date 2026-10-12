@@ -7,9 +7,6 @@ inputs:
   aqua_version:
     required: true
     description: The version of aqua
-  takumi_guard_bot_id:
-    required: false
-    description: Takumi Guard bot ID. This requires the permission `id-token:write`.
 runs:
   using: composite
   steps:
@@ -43,20 +40,15 @@ runs:
       with:
         go-version-file: go.mod
 
-    - uses: flatt-security/setup-takumi-guard-golang@2e3c7c40b538cd68b2ac483def12982ebc8bc02e # v1
-      if: inputs.takumi_guard_bot_id != ''
-      with:
-        bot-id: ${{inputs.takumi_guard_bot_id}}
-
+    # Use only the modules restored by download-go-module-action.
     - run: |
-        if [ -z "$TAKUMI_GUARD_BOT_ID" ]; then
-          # Use only the modules restored by download-go-module-action.
-          export GOPROXY=off
+        if ! go mod tidy; then
+          echo "::error::go mod tidy failed. Go modules must be restored by suzuki-shunsuke/download-go-module-action. Use the reusable workflow suzuki-shunsuke/go-autofix-action/.github/workflows/autofix-ci.yaml"
+          exit 1
         fi
-        go mod tidy
       shell: bash
       env:
-        TAKUMI_GUARD_BOT_ID: ${{inputs.takumi_guard_bot_id}}
+        GOPROXY: "off"
 
     # golangci-lint
     - run: golangci-lint version
