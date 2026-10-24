@@ -12,12 +12,15 @@ on:
 permissions: {}
 jobs:
   gomodule:
-    uses: suzuki-shunsuke/download-go-module-action/.github/workflows/download.yaml@5d7ee96c505de1e3265c2d5ad67d2c66076844f1 # v0.0.9
+    uses: suzuki-shunsuke/download-go-module-action/.github/workflows/download.yaml@e03acd0c9d3d230019ebb7bd4a62507431fe4316 # v0.0.10
     permissions:
       contents: read
       id-token: write
     with:
       ref: ${{github.event.pull_request.head.sha}}
+      # The autofix job runs go mod tidy with GOPROXY=off,
+      # which requires modules imported by tests of dependencies and modules of imports not added to go.mod yet.
+      go_mod_tidy: true
     secrets:
       TAKUMI_GUARD_BOT_ID: ${{secrets.TAKUMI_GUARD_BOT_ID}}
 
@@ -29,7 +32,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Restore Go modules
-        uses: suzuki-shunsuke/download-go-module-action/restore@5d7ee96c505de1e3265c2d5ad67d2c66076844f1 # v0.0.9
+        uses: suzuki-shunsuke/download-go-module-action/restore@e03acd0c9d3d230019ebb7bd4a62507431fe4316 # v0.0.10
       - uses: $/.
         with:
           aqua_version: ${{inputs.aqua_version}}
