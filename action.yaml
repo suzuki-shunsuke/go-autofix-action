@@ -40,15 +40,17 @@ runs:
       with:
         go-version-file: go.mod
 
-    # Use only the modules restored by download-go-module-action.
+    # Use only the modules restored by download-go-module-action in all subsequent steps,
+    # including go run and scripts, so that modules aren't downloaded without Takumi Guard.
+    - run: echo "GOPROXY=off" >> "$GITHUB_ENV"
+      shell: bash
+
     - run: |
         if ! go mod tidy; then
           echo "::error::go mod tidy failed. Go modules must be restored by suzuki-shunsuke/download-go-module-action. Use the reusable workflow suzuki-shunsuke/go-autofix-action/.github/workflows/autofix-ci.yaml"
           exit 1
         fi
       shell: bash
-      env:
-        GOPROXY: "off"
 
     # golangci-lint
     - run: golangci-lint version
