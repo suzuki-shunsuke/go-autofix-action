@@ -18,7 +18,7 @@ jobs:
       id-token: write
     with:
       ref: ${{github.event.pull_request.head.sha}}
-      # The autofix job runs go mod tidy with GOPROXY=off,
+      # The autofix job runs go mod tidy with GOPROXY pointing to the restored module cache,
       # which requires modules imported by tests of dependencies and modules of imports not added to go.mod yet.
       go_mod_tidy: true
     secrets:

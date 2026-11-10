@@ -39,10 +39,16 @@ runs:
     - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
       with:
         go-version-file: go.mod
+        # Don't restore the module cache from GitHub Actions cache,
+        # because the file proxy below must serve only the modules restored by download-go-module-action.
+        cache: false
 
     # Use only the modules restored by download-go-module-action in all subsequent steps,
     # including go run and scripts, so that modules aren't downloaded without Takumi Guard.
-    - run: echo "GOPROXY=off" >> "$GITHUB_ENV"
+    # GOPROXY=off isn't used because it disables module lookups even if the module cache has the result.
+    # go mod tidy looks up the module providing a package missing from go.mod (e.g. a package imported by tests of a dependency),
+    # and the file proxy serves the lookup results which download-go-module-action resolved via Takumi Guard.
+    - run: echo "GOPROXY=file://$(go env GOMODCACHE)/cache/download" >> "$GITHUB_ENV"
       shell: bash
 
     - run: |
