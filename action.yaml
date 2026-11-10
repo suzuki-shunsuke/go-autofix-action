@@ -39,6 +39,9 @@ runs:
     - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
       with:
         go-version-file: go.mod
+        # Don't restore the module cache from GitHub Actions cache,
+        # because the file proxy below must serve only the modules restored by download-go-module-action.
+        cache: false
 
     # Use only the modules restored by download-go-module-action in all subsequent steps,
     # including go run and scripts, so that modules aren't downloaded without Takumi Guard.
